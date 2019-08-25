@@ -45,7 +45,7 @@ class GoodsController extends Controller
         }else{
             $orderType = $request->input('orderType');
         }
-// dd($orderType);
+        // dd($orderType);
         $good = DB::table('goods')->where($kw_type,"like","%".$kw."%")->orderBy($orderType)->paginate($pageSize);
         return view('Admin.Goods.index',['good'=>$good,'request'=>$request->all()]);
     }
@@ -110,7 +110,10 @@ class GoodsController extends Controller
      */
     public function show($id)
     {
-        //
+        // 后台商品详情
+        // echo $id;
+        $show = DB::table('goods')->where('id','=',$id)->first();
+        return view('Admin.Goods.show',['show'=>$show]);
     }
 
     /**

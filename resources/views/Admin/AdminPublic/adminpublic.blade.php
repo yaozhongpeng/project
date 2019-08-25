@@ -199,6 +199,12 @@
         <li><a href="/adminorder">订单列表</a></li> 
        </ul> </li>
 
+       <li> <a href="#"><i class="icon-folder-closed"></i> 评价管理</a> 
+       <ul class="closed"> 
+        <li><a href="/adminping/create">评价添加</a></li> 
+        <li><a href="/adminping">评价列表</a></li> 
+       </ul> </li>
+
        <li> <a href="#"><i class="icon-link"></i> 友情链接管理</a> 
        <ul class="closed"> 
         <li><a href="/adminlink/create">添加友情链接</a></li> 

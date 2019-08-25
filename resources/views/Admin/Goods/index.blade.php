@@ -67,6 +67,8 @@
               <button class="btn btn-success" type="submit" onclick="return confirm('确定删除该用户吗?')";>删除</button>
           </form>
           <a class="btn btn-info" href="/admingoods/{{$g->id}}/edit">修改</a>
+          <a class="btn btn-info" href="/admingoodshow/{{$g->id}}">详情</a>
+          <a class="btn btn-info" href="/ping/{{$g->id}}">评价</a>
           </span>
         </td>
       </tr>

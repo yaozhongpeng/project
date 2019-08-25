@@ -80,7 +80,7 @@ class ArticlerController extends Controller
         OSS::upload($newfile, $filepath); // 实例化 oss 类
         // die; // 休息一下,检测是否可以上传
 
-        // 数据入库
+        // 封装数据
         $data['title']=$request->input('title');
         $data['editor']=$request->input('editor');
         $data['thumb'] = env('ALIURL').$newfile;
@@ -123,7 +123,7 @@ class ArticlerController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 获取修改数据
         $art = Article::where('id','=',$id)->first();
         return view('Admin.Articler.edit',['art'=>$art]);
     }
@@ -137,7 +137,49 @@ class ArticlerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 执行修改更新
+        // dd($request->all());
+        // ----------------阿里云 OSS 上传 start-------------------        
+        if ($request->hasFile('thumb')) { // 1.检测是否有文件上传
+            $name = time(); // 文件名
+            $file = $request->file('thumb'); // 文件上传信息
+            $ext = $request->file('thumb')->getClientOriginalExtension(); // 获取文件后缀
+        
+            // 上传阿里云 OSS
+            $newfile = $name.'.'.$ext; // 上传到阿里云存储的新文件名
+            $filepath = $file->getRealPath(); // 文件上传的临时目录
+            OSS::upload($newfile, $filepath); // 实例化 oss 类
+
+            $img = env('ALIURL').$newfile;
+        }else{
+            $img = $request->input('img');
+        }
+
+        // 封装修改数据
+        $data['title'] = $request->input('title');
+        $data['editor']= $request->input('editor');
+        $data['thumb'] = $img;
+        $data['descr'] = $request->input('descr');
+        // dd($data);
+        $res = Article::where('id','=',$id)->update($data);
+        if ($res) {
+            // 添加数据到数据库的同时,添加到缓存服务器
+            // ------------redis start-------------------------
+            $listkey = 'List_article_list';   // 链表
+            $hashkey = 'Hash_article';        // Hash表
+
+            // 删除缓存服务器数据,否则缓存存在
+            Redis::lrem($listkey,1,$id);      // 删除链表里的 id
+            Redis::del($hashkey.$id);         // 删除哈希表里的数据
+
+            Redis::lpush($listkey,$id);       // id  存到链表
+            $data['id'] = $id;                // Hash表中需要有 id 字段
+            Redis::hmset($hashkey.$id,$data); // 数据存到哈希表
+            // ------------redis end---------------------------
+            return redirect('/adminarticleredis')->with('success','修改成功!');
+        }else{
+            return back()->with('error','修改失败!');
+        }
     }
 
     /**

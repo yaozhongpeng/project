@@ -1,5 +1,5 @@
 <?php
-// 后天友情链接管理
+// 后台友情链接管理
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;

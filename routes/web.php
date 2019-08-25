@@ -61,6 +61,12 @@ Route::group(['middleware'=>'adminlogin'],function(){
 	Route::resource('/adminimg','Admin\ImgController');
 	// 后台商品
 	Route::resource('/admingoods','Admin\GoodsController');
+	// 后台商品详情
+	Route::get('/admingoodshow/{id}','Admin\GoodsController@show');
+	// 商品评价管理
+	Route::resource('/goodsping','Admin\PingController');
+	// 商品评价
+	Route::any('/ping/{id}','Admin\PingController@ping');
 	// ajax 单个删除 redis 公告
 	Route::get('/ajaxdel','Admin\ArticlerController@ajaxdel');
 	// 后台资讯管理
@@ -179,7 +185,7 @@ Route::resource('/myorder','Member\OrderController');
 // 评价管理
 Route::resource('/pingjia','Member\PingController');
 // 评价
-Route::get('/pingjia/create/{id}','Member\PingController@create');
+Route::get('/pinglun/create/{id}','Member\PingController@create');
 
 // 地址管理
 Route::resource('/myaddress','Member\AddressController');

@@ -35,7 +35,8 @@
        <div class="mws-form-item"> 
         <input type="file" class="small" name="thumb" />
         <img src="{{$art['thumb']}}"><br>
-        {{$art['thumb']}} 
+        {{$art['thumb']}}
+        <input type="hidden" name="img" value="{{$art['thumb']}}"> 
        </div> 
       </div> 
       <div class="mws-form-row"> 

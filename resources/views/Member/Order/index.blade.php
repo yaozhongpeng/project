@@ -95,7 +95,7 @@
                             <td>xxoo</td>
                             <td>ooxx</td>
                             <td>
-                                <a href="/pingjia/create/{{$v2->goods_id}}">评价</a>
+                                <a href="/pinglun/create/{{$v2->goods_id}}">评价</a>
                                 <button>晒单</button>
                             </td>
                         </tr>
