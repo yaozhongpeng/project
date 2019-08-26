@@ -95,7 +95,7 @@
 @endif
 </table>
 <div class="b20"></div>
-<table cellpadding="10" cellspacing="0" width="100%" border="1">
+<table cellpadding="10" cellspacing="0" width="100%">
 <tr>
 <td class="f_gray">提示：实际的运费可能因为收货地址的不同而有差异，具体以提交之后系统计算或与卖家协商为准</td>
 <td class="t_r" width="300">共 <span class="f_red" id="total_good">2</span> 种商品，总价：</td>
@@ -105,13 +105,13 @@
 <tr>
 <td></td>
 <td class="t_r">优惠：</td>
-<td class="t_r"><span id="total_discount"></span></td>
+<td class="t_r"><span id="total_discount">0.00</span></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td class="t_r">实付：</td>
-<td class="t_r"><span class="f_red f_b px16" id="total_amount"></span></td>
+<td class="t_r"><span class="f_red f_b px16" id="total_amount">{{$tot}}</span></td>
 <td></td>
 </tr>
 <!-- 提交订单 start -->
@@ -255,7 +255,6 @@
     <!-- 插入地址2结束 -->
     </div>
   </div>
-
 <!-- end -->
 </div>
 <script>

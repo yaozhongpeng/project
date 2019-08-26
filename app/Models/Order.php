@@ -17,7 +17,7 @@ class Order extends Model
 
     // 修改器
     public function getStatusAttribute($value){
-    	$status = [0=>'待付款',1=>'禁用',2=>'已付款',3=>'待收货',4=>'待评价'];
+    	$status = [0=>'待付款',1=>'禁用',2=>'已付款',3=>'待收货',4=>'待评价',5=>'已完成',6=>'售后中'];
     	return $status[$value];
     }
 

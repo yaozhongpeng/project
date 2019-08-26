@@ -54,6 +54,7 @@ class GoodsController extends Controller
         $good = DB::table('goods')->where('id','=',$id)->first();
         // 买家评价
         $ping = DB::table('pingjia')->where('goods_id','=',$id)->get();
+        // dd($ping);
         return view('Home.Goods.show',['good'=>$good,'ping'=>$ping]);
     }
 
