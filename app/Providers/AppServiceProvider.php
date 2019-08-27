@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 变量共享
+        $kws = DB::table('goods_word')->where('level','=',1)->get();
+        // 把变量共享给每个视图
+        view()->share('kws',$kws);
     }
 
     /**

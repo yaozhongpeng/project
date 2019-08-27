@@ -78,7 +78,7 @@ $(document).ready(function(){
 // 　    $('#authname').val(a); // 赋值权限名    
   });  
   $('#authname').click(function(){
-    $(this).val(m_value+'-'+a_value);
+    $(this).val(m_value+'-'+a_value+'-'+a_text);
   }); // 赋值权限名  
 });  
 </script>

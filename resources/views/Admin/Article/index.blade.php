@@ -55,7 +55,7 @@
         <td><a href="/homearticle/{{$v->id}}">{{$v->title}}</a></td>
         <td>{{$v->editor}}</td>
         <td><img src="{{$v->thumb}}"></td>
-        <td>{{{$v->descr}}}</td>
+        <td>{!!$v->descr!!}</td>
         <td>
         <span class="btn-group">
           <form action="/adminarticle/{{$v->id}}" method="post" style="display:inline-block;">

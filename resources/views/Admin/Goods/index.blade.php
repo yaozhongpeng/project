@@ -54,7 +54,7 @@
       @foreach($good as $k=>$g)
       <tr class="">
         <td class="sorting_1">{{$g->id}}</td>
-        <td><img src="{{$g->pic}}" width="100" height="100"></td>
+        <td align="center"><img src="{{$g->pic}}" width="100" height="100"></td>
         <td><a href="/goods/show/{{$g->id}}" target="_blank">{{$g->name}}</a></td>
         <td><a href="/goods/list/{{$g->cate_id}}" target="_blank">{{$g->cate_id}}</a></td>
         <td>{{$g->num}}</td>

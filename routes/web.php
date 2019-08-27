@@ -67,14 +67,20 @@ Route::group(['middleware'=>'adminlogin'],function(){
 	Route::resource('/goodsping','Admin\PingController');
 	// 商品评价
 	Route::any('/ping/{id}','Admin\PingController@ping');
+	// 删评价
+	Route::any('/pingdel/{id}','Admin\PingController@destroy');
 	// ajax 单个删除 redis 公告
 	Route::get('/ajaxdel','Admin\ArticlerController@ajaxdel');
 	// 后台资讯管理
 	Route::resource('/adminnews','Admin\NewsController');
 	// 后台订单管理
 	Route::resource('/adminorder','Admin\OrderController');
+	// 后台订单管理
+	Route::any('/adminstatus','Admin\OrderController@adminstatus');
 	// 后台订单详情
 	Route::get('/orderinfo/{id}','Admin\OrderController@orderinfo');
+	// 搜索词维护
+	Route::resource('/adminkw','Admin\KeywordsController');
 });
 
 //-----------------------project start Admin end---------------
@@ -103,7 +109,6 @@ Route::get('/checkcode','Home\RegisterController@checkcode');
 Route::resource('/homelogin','Home\LoginController');
 // 加载选择找回密码方式模板
 Route::get('/forget','Home\LoginController@forget');
-
 // 通过邮箱--------------------------------
 Route::get('/useemail','Home\LoginController@useemail');
 // 发送找回密码邮件
@@ -174,28 +179,26 @@ Route::get('/memberaddress/{id}','Home\MemberController@memberaddress');
 	Route::post('/order/create','Home\OrderController@ordergoodsinsert');
 	// 支付完毕,跳转
 	Route::get('/returnurl','Home\OrderController@returnurl');
+	//-----------------------Home end--------------------
+	//-----------------------Member start----------------
+	// 会员中心首页
+	Route::resource('/mb/','Member\MemberController');
+	// 订单管理
+	Route::resource('/myorder','Member\OrderController');
+	// 评价管理
+	Route::resource('/pingjia','Member\PingController');
+	// 评价
+	Route::get('/pinglun/create/{id}','Member\PingController@create');
+	// 地址管理
+	Route::resource('/myaddress','Member\AddressController');
+	// 个人信息
+	Route::resource('/person','Member\PersonController');
+	// 宝贝收藏
+	Route::resource('/hide','Member\HideController');
+	//-----------------------Member end------------------
 // });
+
 // 退出
 Route::get('/homelogout','Home\IndexController@logout');
-//-----------------------Home end----------------
-// 会员中心首页
-Route::resource('/mb/','Member\MemberController');
-// 订单管理
-Route::resource('/myorder','Member\OrderController');
-// 评价管理
-Route::resource('/pingjia','Member\PingController');
-// 评价
-Route::get('/pinglun/create/{id}','Member\PingController@create');
-
-// 地址管理
-Route::resource('/myaddress','Member\AddressController');
-
-// 个人信息
-Route::resource('/person','Member\PersonController');
-// 宝贝数仓
-Route::resource('/hide','Member\HideController');
-
-//分词搜索
+// 分词搜索
 Route::get('/search','Home\IndexController@search');
-
-

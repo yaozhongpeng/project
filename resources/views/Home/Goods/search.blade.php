@@ -147,4 +147,4 @@
 <div class="c_b"></div>
 </div>
 @endsection 
-@section('title','中文分词搜索')
+@section('title',$word.' - 中文分词搜索')

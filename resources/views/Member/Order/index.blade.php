@@ -1,5 +1,6 @@
 @extends('Member.MemberPublic.memberpublic')
 @section('member')
+<script type="text/javascript" src="/static/jquery-1.8.3.min.js"></script>
 <section class="panel">
     <header class="panel-heading custom-tab ">
         <ul class="nav nav-tabs">
@@ -118,8 +119,7 @@
                             @endif
                             </td>
                             <td>
-                                <a href="/pinglun/create/{{$v2->goods_id}}">评价</a>
-                                <button>晒单</button>
+                            xxoo
                             </td>
                         </tr>
                         @endif   
@@ -243,7 +243,8 @@
                             <td>ooxx</td>
                             <td>
                                 <!-- <a href="/pinglun/create/{{$c->goods_id}}">评价</a> -->
-                                <button>提醒发货</button>
+                                <button onclick="return confirm('你确定要骚扰美女掌柜吗?')";>提醒发货</button>
+                                <button onclick="return confirm('你确定让美女掌柜伤心吗?')";>取消订单</button>
                             </td>
                         </tr>
                         @endif   
@@ -305,7 +306,8 @@
                             <td>ooxx</td>
                             <td>
                                 <!-- <a href="/pinglun/create/{{$j->goods_id}}">评价</a> -->
-                                <button>查看物流</button>
+                                <button onclick="return confirm('你确定看吗?别失望哦')";>查看物流</button>
+                                <button >确认收货</button>
                             </td>
                         </tr>
                         @endif   
@@ -367,7 +369,7 @@
                             <td>ooxx</td>
                             <td>
                                 <a href="/pinglun/create/{{$v2->goods_id}}">评价</a>
-                                <button>晒单</button>
+                                <button onclick="return confirm('你还有空晒单呢?好好敲代码吧')";>晒单</button>
                             </td>
                         </tr>
                         @endif   
@@ -429,7 +431,8 @@
                             <td>ooxx</td>
                             <td>
                                 <!-- <a href="/pinglun/create/{{$v2->goods_id}}">评价</a> -->
-                                <button>申请售后</button>
+                                <button onclick="return confirm('你确定申请售后吗?')";>申请售后</button>
+                                <button onclick="return confirm('你确定把它卖了吗?')";>卖了换钱</button>
                             </td>
                         </tr>
                         @endif   
@@ -491,7 +494,7 @@
                             <td>ooxx</td>
                             <td>
                                 <!-- <a href="/pinglun/create/{{$v2->goods_id}}">评价</a> -->
-                                <button>售后中...</button>
+                                <button onclick="return confirm('你忍心骚扰客服小妹吗?')";>售后中...</button>
                             </td>
                         </tr>
                         @endif   
@@ -508,6 +511,9 @@
             </div>
         </div>
     </div>
-</section>     
+</section>
+<script type="text/javascript">
+    alert($);
+</script>     
 @endsection 
 @section('title','订单列表 - 会员中心')

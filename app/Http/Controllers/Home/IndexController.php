@@ -35,7 +35,10 @@ class IndexController extends Controller
         $news = DB::table('news')->take(6)->get();
 
         //获取顶级分类信息 
-        $cates = DB::table('cates')->where('pid','=',0)->get(); 
+        $cates = DB::table('cates')->where('pid','=',0)->get();
+
+        // 搜索词维护
+        // $keywords = DB::table('goods_word')->where('level','=',1)->get(); 
         // dd($cate); 
         // 遍历 
         foreach($cates as $c){ 
@@ -50,7 +53,7 @@ class IndexController extends Controller
             'imgs'=>$imgs,
             'goods'=>$goods,
             'good'=>$good,
-            'news'=>$news,
+            'news'=>$news
             ]);
     }
 
@@ -143,9 +146,12 @@ class IndexController extends Controller
     }
 
     // 中文分词搜索
-    public function search()
+    public function search(Request $request)
     {
-        $word = $_GET['kw'];
+        // dd($request->input('kw'));
+        $word = empty($request->input('kw')) ? $request->input('kw') : '苍老师';
+        // $word = isset($_GET['kw']) ? $_GET['kw'] : '1';
+        // $word = $_GET['kw'];
         // dd($word);
         $data = DB::table('goods_word')->where('word','=',$word)->get();
         // dd($data);
@@ -155,6 +161,14 @@ class IndexController extends Controller
             ->where('goods.id','=',$v->goods_id)->get();    
         }
         // dd($data1);
-        return view('Home.Goods.search',['data'=>$data,'data1'=>$data1]);
+        return view('Home.Goods.search',['data'=>$data,'data1'=>$data1,'word'=>$word,'request'=>$request->all()]);
+    }
+
+    // goods_word 表,搜索词维护
+    public function kwuse()
+    {
+        $keywords = DB::table('goods_word')->where('level','=',1)->get();
+        // dd($keywords);
+        return view('Home.HomePublic.homepublic',['keywords'=>$keywords]);
     }
 }

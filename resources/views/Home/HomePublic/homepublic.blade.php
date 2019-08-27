@@ -50,13 +50,19 @@ var searchid = 5;
 		<div class="head_l">
 			<ul>
 				<li class="h_fav"><script type="text/javascript">addFav('收藏本页');</script></li>
-				<li class="h_mobile"><a href="javascript:Dmobile();">手机版</a></li><li class="h_qrcode"><a href="javascript:Dqrcode();">二维码</a></li><li class="h_cart"><a href="/cart">购物车</a>(<span class="head_t" id="destoon_cart">0</span>)</li></ul>
+				<li class="h_mobile"><a href="javascript:Dmobile();">手机版</a></li>
+				<li class="h_qrcode"><a href="javascript:Dqrcode();">二维码</a></li>
+				<li class="h_cart"><a href="/cart">购物车</a>(<span class="head_t" id="destoon_cart">0</span>)</li>
+			</ul>
 		</div>
 	</div>
 </div>
+
 <div class="m head_s" id="destoon_space"></div>
 
-<div class="m"><div id="search_tips" style="display:none;"></div></div>
+<div class="m">
+	<div id="search_tips" style="display:none;"></div>
+</div>
 	<div id="destoon_qrcode" style="display:none;"></div>
 
 <div class="m">
@@ -73,27 +79,28 @@ var searchid = 5;
 <div class="m">
 	<!-- logo start -->
 	<div class="logo f_l">
-		<a href="/homeindex"><img src="/static/homeSkin/images/logo.png" alt="laravel"/></a>
+		<a href="/homeindex"><img src="/static/homeSkin/images/logo.png"/></a>
 	</div>
 	<!-- logo end -->
 	<!-- search start -->
-	<form action="/search" method="get">
-		<input type="text" name="kw" placeholder="请输入搜索关键词" required >
+	<form action="/search" method="get" style="float:left;margin-top:24px;">
 		<select>
 			<option value="/goods">商品</option>
 			<option value="/cates">分类</option>
 			<option value="news">资讯</option>
 			<option value="/homeuser">会员</option>
 			<option value="/article">公告</option>
-		</select>
-		<input type="submit" value="搜索">
+		</select><input type="text" name="kw" value="{{$request['kw'] or ''}}" required autofocus placeholder="请输入关键词" size="60"><input type="submit" value="搜 索">
 	</form>
 	<!-- search end -->
 	<!-- keywords start -->
 	<div class="head_search_kw f_l">
-		<!-- <a href="" onclick="Dsearch_top();return false;"><strong></strong></a> 
-		<a href="" onclick="Dsearch_adv();return false;"><strong>热搜:</strong></a>
-		<span id="destoon_word"></span> -->
+ 		<strong>热门搜索:</strong>
+		<span>
+		@foreach($kws as $v)
+			<a href="/search?kw={{$v->word}}">{{$v->word}}</a>
+		@endforeach
+		</span>
 	</div>
 	<!-- key words end -->
 </div>

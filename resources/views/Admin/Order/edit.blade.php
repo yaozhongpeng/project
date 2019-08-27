@@ -34,6 +34,20 @@
         <input type="text" class="small" name="status" value="{{$data->status}}" /> 
        </div> 
       </div>
+      <div class="mws-form-row"> 
+       <label class="mws-form-label">状态</label> 
+       <div class="mws-form-item"> 
+        <select name="status" id="status">
+          <option value="0">未付款</option>
+          <option value="1">禁用</option>
+          <option value="2">已付款</option>
+          <option value="3">待收货</option>
+          <option value="4">待评价</option>
+          <option value="5">已完成</option>
+          <option value="6">售后中</option>
+        </select>
+       </div> 
+      </div>
      <div class="mws-button-row">
      {{csrf_field()}}
      {{method_field('PUT')}}

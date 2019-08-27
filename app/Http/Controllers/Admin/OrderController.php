@@ -17,7 +17,9 @@ class OrderController extends Controller
     public function index()
     {
         // 后台订单列表
-        $orders = Order::paginate(5);
+        $orders = Order::paginate(10);
+        // $res = DB::table('orders')->where('id','=',7)->first();
+        // dd($res->status);
         return view('Admin.Order.index',['orders'=>$orders]);
     }
 
@@ -63,6 +65,10 @@ class OrderController extends Controller
     {
         // 修改订单
         // 获取修改数据
+        // $status = $this->getStatusAttribute();
+        // $order = new order();
+        // $status = $order->getStatusAttribute();
+        // dd($status);
         $data = DB::table('orders')->where('id','=',$id)->first();
         return view('Admin.Order.edit',['data'=>$data]);
     }
@@ -110,5 +116,22 @@ class OrderController extends Controller
         $orderinfo = Order::find($id)->info;
         // dd($orderinfo);
         return view('Admin.Order.info',['orderinfo'=>$orderinfo]);
+    }
+
+    // 该订单状态 status
+    public function adminstatus(Request $request)
+    {
+
+        $id = $request->input('id');
+        $op = $request->input('op');
+        $data['status'] = $op;
+
+        $d = DB::table('orders')->where('id','=',$id)->update($data);
+
+        $res = DB::table('orders')->where('id','=',$id)->first();
+
+        if ($res->status == $op) {
+            echo $op;
+        } 
     }
 }

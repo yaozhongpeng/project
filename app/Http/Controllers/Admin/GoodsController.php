@@ -112,7 +112,7 @@ class GoodsController extends Controller
     {
         // 后台商品详情
         // echo $id;
-        $show = DB::table('goods')->where('id','=',$id)->first();
+        $show = DB::table('pingjia')->where('id','=',$id)->get();
         return view('Admin.Goods.show',['show'=>$show]);
     }
 

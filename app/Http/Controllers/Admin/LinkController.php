@@ -130,7 +130,6 @@ class LinkController extends Controller
     public function destroy($id)
     {
         // 删除友情链接
-        // 删除
         if(Link::where('id','=',$id)->delete()){
             return redirect('/adminlink')->with('success','删除成功!');
         }

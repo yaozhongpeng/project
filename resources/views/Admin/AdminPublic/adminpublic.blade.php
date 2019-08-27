@@ -175,11 +175,11 @@
         <li><a href="/adminimg">轮播图列表</a></li> 
        </ul> </li>
 
-       <!-- <li> <a href="#"><i class="icon-font"></i> 广告管理</a> 
+       <li> <a href="#"><i class="icon-font"></i> 广告管理</a> 
        <ul class="closed"> 
         <li><a href="/adminad/create">添加广告</a></li> 
         <li><a href="/adminad">广告列表</a></li> 
-       </ul> </li> -->
+       </ul> </li>
         
       <li> <a href="#"><i class="icon-folder-closed"></i> 资讯管理</a> 
        <ul class="closed"> 
@@ -199,10 +199,10 @@
         <li><a href="/adminorder">订单列表</a></li> 
        </ul> </li>
 
-       <li> <a href="#"><i class="icon-folder-closed"></i> 评价管理</a> 
+       <li> <a href="#"><i class="icon-folder-closed"></i> 搜索词维护</a> 
        <ul class="closed"> 
-        <li><a href="/adminping/create">评价添加</a></li> 
-        <li><a href="/adminping">评价列表</a></li> 
+        <li><a href="/adminkw">关键词列表</a></li>
+        <li><a href="/adminkw/create">关键词添加</a></li> 
        </ul> </li>
 
        <li> <a href="#"><i class="icon-link"></i> 友情链接管理</a> 

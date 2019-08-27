@@ -6,24 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 
-class PingController extends Controller
+class KeywordsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function ping($id)
-    {
-        // 评价列表
-        // echo $id;die;
-        $p = DB::table('pingjia')->where('goods_id','=',$id)->get();
-        return view('Admin.Ping.index',['p'=>$p]);
-    }
-
     public function index()
     {
-        //
+        // 搜索词列表
+        $kw = DB::table('goods_word')->paginate(10);//pluck('word');
+        // dd($kw);
+        return view('Admin.Keywords.index',['kw'=>$kw]);
     }
 
     /**
@@ -34,6 +29,7 @@ class PingController extends Controller
     public function create()
     {
         //
+        return view('Admin.Keywords.add');
     }
 
     /**
@@ -45,6 +41,14 @@ class PingController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
+        $data = $request->except(['_token']);
+        // dd($data);
+        if (DB::table('goods_word')->insert($data)) {
+            return redirect('/adminkw')->with('success','添加搜索词成功!');
+        }else{
+            return back()->with('error','添加搜索词失败!');
+        }    
     }
 
     /**
@@ -66,7 +70,9 @@ class PingController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 获取修改数据
+        $kw = DB::table('goods_word')->where('id','=',$id)->first();
+        return view('Admin.Keywords.edit',['kw'=>$kw]);
     }
 
     /**
@@ -79,6 +85,14 @@ class PingController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request->all());
+        $data = $request->except(['_token','_method']);
+        // dd($data);
+        $res = DB::table('goods_word')->where('id','=',$id)->update($data);
+        if ($res) {
+            return redirect('/adminkw')->with('success','修改搜索词成功!');
+        }
+        return back()->with('error','修改失败!');
     }
 
     /**
@@ -89,11 +103,10 @@ class PingController extends Controller
      */
     public function destroy($id)
     {
-        // echo $id;die;
-        // 删除评价
-        if(DB::table('pingjia')->where('id','=',$id)->delete()){
-            return redirect('/admingoods')->with('success','删除成功!');
+        // 删除搜索词
+        if(DB::table('goods_word')->where('id','=',$id)->delete()){
+            return redirect('/adminkw')->with('success','删除搜索词成功!');
         }
-        return back()->with('error','删除失败!');
+        return back()->with('error','删除搜索词失败!');
     }
 }
